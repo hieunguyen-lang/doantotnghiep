@@ -1,0 +1,127 @@
+{%  extends 'trangchu/base.html' %}
+{% load static  %}
+
+{% block maincontent %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tiện ích
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Netflix</a></li>
+                    <li><a class="dropdown-item" href="#">Máy chiếu</a></li>
+                    <li><a class="dropdown-item" href="#">Bồn tắm</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Khu vực 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#">Hoàn Kiếm</a></li>
+                    <li><a class="dropdown-item" href="#">Ba Đình</a></li>
+                    <li><a class="dropdown-item" href="#">Tây Hồ</a></li>
+                    <li><a class="dropdown-item" href="#">Hai Bà Trưng</a></li>
+                    <li><a class="dropdown-item" href="#">Dống Đa</a></li>
+                    <li><a class="dropdown-item" href="#">T.Xuân-C.Giấy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="price-slider">
+                <!-- Thanh kéo giá tiền -->
+                <input type="range" min="0" max="1000" value="500" class="form-range" id="priceRange">
+                <label for="priceRange" class="form-label">Price Range: $<span id="priceValue">500</span></label>
+            </div>
+            <script src="script.js"></script>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown 4
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary" type="button" >
+                    Check Avaible
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <div id="products" class="row view-group">
+        {% for phong in phongs %} 
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                {{ phong.Ten }} </h4>
+                            <p class="group inner list-group-item-text">
+                                <div style="display: flex">
+                                    <div style="margin-right: 50px;">
+                                        <div> Địa chỉ:{{phong.Diachi }} </div>
+                                        <div> Tiện nghi: </div> 
+                                        {% if phong.Netflix%}     
+                                        <div> Netflix: Có </div>  
+                                        {% else %}
+                                        <div> Netflix: Không </div>
+                                        {%  endif %} 
+
+                                        {% if phong.Bontam %}     
+                                        <div> Bồn tắm: Có </div>  
+                                        {% else %}
+                                        <div> Bồn tắm: Không </div>
+                                        {%  endif %}
+
+                                        {% if phong.Beprieng%}     
+                                        <div> Bếp: Riêng </div>  
+                                        {% else %}
+                                        <div> Bếp: Chung </div>
+                                        {%  endif %}
+                                    </div>  
+                                    <div>
+                                        Giá:
+                                        <ul> 
+                                            <li> Giá 4 tiếng: {{phong.Gia4tieng}}đ </li>
+                                            <li> Giá 14h-12h: {{phong.Gia14h_12h}}đ </li>
+                                            <li> Giá 1h-19h: {{phong.Gia1h_19h}}đ </li>
+                                            <li> Giá 20h-9h: {{phong.Gia20h_9h}}đ </li>
+                                         </ul>
+                                    </div> 
+                                </div>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        {{phong.Giatien}} </p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+    </div> 
+     
+{% endblock maincontent %}
+
+
